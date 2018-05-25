@@ -4,10 +4,78 @@
     <title>EVAtest</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <script src="web3.min.js"></script>
-    <script src="web3.js"></script>
-    <script src="create.js"></script>
+<div class="container">
+  <div class="row clearfix" style="margin-top:100px;">
+    <div class="col-md-6 column">
+      <input type="number" class="form-control" id="addressnum" placeholder="填写空投地址数量..."/>
+    </div>
+    <div class="col-md-6 column">
+       <button type="button" class="btn btn-default btn-primary" style="width:50%;" onclick="createAccount();">生成</button>
+    </div>
+  </div>
+  <div class="row clearfix" style="margin-top:100px;">
+    <div class="col-md-3 column">
+       <input type="text" class="form-control" id="mainAddress" placeholder="填写主账户地址..."/>
+    </div>
+    <div class="col-md-3 column">
+      <input type="text" class="form-control" id="mainPrivatekey" placeholder="填写主账户私钥..."/>
+    </div>
+    <div class="col-md-3 column">
+      <input type="number" class="form-control" id="balance" placeholder="填写从账户分配的ETH,推荐0.005..."/>
+    </div>
+    <div class="col-md-3 column">
+       <button type="button" class="btn btn-default btn-primary" style="width:50%;" onclick="initBalance();">分配ETH</button>
+    </div>
+  </div>
+    <div class="row clearfix" style="margin-top:100px;">
+    <div class="col-md-6 column">
+      <input type="text" class="form-control" id="airdropAddress" placeholder="填写空投合约地址..."/>
+    </div>
+    <div class="col-md-6 column">
+       <button type="button" class="btn btn-default btn-primary" style="width:50%;" onclick="airdrop();">开始空投</button>
+    </div>
+  </div>
+    <div class="row clearfix" style="margin-top:100px;">
+    <div class="col-md-4 column">
+      <input type="text" class="form-control" id="tokenAddr" placeholder="填写代币地址..."/>
+    </div>
+    <div class="col-md-4 column">
+      <input type="text" class="form-control" id="sumtokenAddr" placeholder="填写代币回归账户地址..."/>
+    </div>
+    <div class="col-md-4 column">
+       <button type="button" class="btn btn-default btn-primary" style="width:50%;" onclick="drawbackToken();">收回代币</button>
+    </div>
+  </div>
+  <div class="row clearfix" style="margin-top:100px;">
+    <div class="col-md-12 column">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              编号
+            </th>
+            <th>
+              地址
+            </th>
+            <th>
+              私钥
+            </th>
+          </tr>
+        </thead>
+        <tbody id="accountlist">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>    
+    <script src="js/web3.min.js"></script>
+    <script src="js/web3.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
