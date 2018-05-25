@@ -19724,7 +19724,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         //   Uploads a file to the Swarm manifest at a given hash, under a specific
         //   route. Returns a promise containing the uploaded hash.
         //   FIXME: for some reasons Swarm-Gateways is sometimes returning
-        //   error 404 (bad request), so we retry up to 3 times. Why?
+        //   error 404 (bad request), so we retry up to 3 times. Why?
         var uploadToManifest = function uploadToManifest(swarmUrl) {
           return function (hash) {
             return function (route) {

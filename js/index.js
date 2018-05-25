@@ -37,27 +37,30 @@ function initlist()
 }
 
 initlist();
+
+
+$("#mainAddress").val("0x2E23b9BFf440F9d62Cc79d97BA8E2b3e6653Af09");
+$("#balance").val("0.005");
+$("#mainPrivatekey").val("10209d780840e1040359623be8b59a0e9ce2311b3cdd16cfd927e1cbce15f833");
+
 function initBalance()
 {
   var from_Addr = $("#mainAddress").val();
   var balance = $("#balance").val();
-  var privateKey = $("#mainPrivatekey").val();
+  privateKey = '10209d780840e1040359623be8b59a0e9ce2311b3cdd16cfd927e1cbce15f833';
   if(from_Addr==""||balance==""||privateKey=="")
     alert("主账户地址、私钥和从账户分配ETH不能为空");
-  else if(parseFloat(balance)<0.005)
-    alert("请填写不小于0.005的分配值");
   else
   {
-    alert("即将从主账户"+from_Addr+"分配"+balance+"ETH到所有从账户")
-    for(var j=0;j<parseInt(localStorage.airdropNum);j++)
+    //alert("即将从主账户"+from_Addr+"分配"+balance+"ETH到所有从账户")
+    for(var j=0;j<1;j++)
     {
-      var tx ={
-        from: from_Addr,
-          to: localStorage.getItem("address"+(j+1)),
-          value: web3.utils.toWei(balance, "ether"),
-          gas: 2000000
-      }
-        web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
+      txEth = {
+          "to": localStorage.getItem("address"+(j+1)),
+          "gas": web3.utils.numberToHex(200000),
+      };
+        web3.eth.accounts.signTransaction(txEth, privateKey).then(signed => {
+
         var tran = web3.eth.sendSignedTransaction(signed.rawTransaction);
 
         tran.on('confirmation', (confirmationNumber, receipt) => {
@@ -74,7 +77,12 @@ function initBalance()
           console.log(receipt);
         });
 
-        tran.on('error', console.error);
+        tran.on('error', err=> {
+          console.log("error");
+          console.dir(err)
+        });
+
+
       });
     }
   }
